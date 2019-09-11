@@ -98,7 +98,7 @@ void fillTree(Tree& tree, int level)
 		tree.children.push_back(child);
 	}
 }
-
+void main() {
 Tree root;
 	fillTree(root, 0);
 	TreeVisitor visitor;
@@ -113,4 +113,5 @@ Tree root;
 	{
 		std::cout << "Exercise 2: Incorrect" << std::endl;
 	}
+}
   ```
