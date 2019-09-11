@@ -37,41 +37,7 @@ you should only sum the tree values from nodes that are on even levels. Note
 that 0 (the root node of the tree) is considered an even number. Extend your
 Treevisitor::visitTree method to support this functionality.
 
-Solution:
-```c
-class TreeVisitor {
-public:
-	float total = 0.f;
-	float visitTree(const Tree& tree, bool countOnlyEvenLevels) {
-		//When counting nodes on only even levels
-		if (countOnlyEvenLevels) {				
-			total = 0.f;
-			return visitEvenTree(tree, countOnlyEvenLevels);
-		} 
-		//When counting all nodes
-		else {
-			for (auto i : tree.children) {
-				total += i.value;
-				visitTree(i, countOnlyEvenLevels);
-			}
-		}
-		return total; 
-	}
-
-	//Helper method in case the tree only counts nodes on even levels
-	float visitEvenTree(const Tree& tree, bool even) {
-		if (even) {
-			total += tree.value;
-		}
-		for (auto i : tree.children) {
-			visitEvenTree(i, !even);
-		}
-		return total;
-	}
-};
-```
-
-Test:
+**Test:**
 ```c
 class Tree {
 public:
@@ -115,3 +81,37 @@ Tree root;
 	}
 }
   ```
+
+**Solution:**
+```c
+class TreeVisitor {
+public:
+	float total = 0.f;
+	float visitTree(const Tree& tree, bool countOnlyEvenLevels) {
+		//When counting nodes on only even levels
+		if (countOnlyEvenLevels) {				
+			total = 0.f;
+			return visitEvenTree(tree, countOnlyEvenLevels);
+		} 
+		//When counting all nodes
+		else {
+			for (auto i : tree.children) {
+				total += i.value;
+				visitTree(i, countOnlyEvenLevels);
+			}
+		}
+		return total; 
+	}
+
+	//Helper method in case the tree only counts nodes on even levels
+	float visitEvenTree(const Tree& tree, bool even) {
+		if (even) {
+			total += tree.value;
+		}
+		for (auto i : tree.children) {
+			visitEvenTree(i, !even);
+		}
+		return total;
+	}
+};
+```
