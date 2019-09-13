@@ -1,7 +1,5 @@
 You're stuck in a labyrinth and need to nd a way out. The labyrinth is of size
-size * size, and is always a square. You need to get from tile (0, 0) to tile (size
-- 1, size - 1). You can only move between adjacent squares (up, down, left,
-right), and you cannot move diagonally. The function you are given is defned
+size * size, and is always a square. You need to get from tile (0, 0) to tile (size- 1, size - 1). You can only move between adjacent squares (up, down, left, right), and you cannot move diagonally. The function you are given is defned
 as shown below.
 
 ```c
@@ -62,7 +60,7 @@ std::set<std::pair<location, location> > labyrinth;
   ```c
   typedef std::pair<int, int> location;
 
-//create neighbour locations for the current location (north, east, south, west)
+//create neighbour locations for the current location (up, down, left, right)
 location getNeighbour(location current, int direction) {
 	switch (direction) {
 		case 1:
