@@ -1,6 +1,6 @@
-You are given a structure with diering heights at dierent indexes. You are
+You are given a structure with differing heights at different indexes. You are
 tasked with calculating the total possible water that can be held within the
-structure due to indexes diering in heights.
+structure due to indexes differing in heights.
 
 You are also given a method called WaterLevels which takes an std::list10 con-
 taining the heights at each index. The method is defined as shown below.
@@ -60,7 +60,7 @@ float WaterLevels(std::list<float> heights) {
 	while (l <= r) {
 		if (hvector[l] < hvector[r])
 		{
-			//if value of current left is bigger than max left, update value else substract max left with current left and add it to total level.
+//if value of current left is bigger than max left, update value else substract max left with current left and add it to total level.
 			if (hvector[l] > left)
 				left = hvector[l];
 			else
@@ -69,7 +69,7 @@ float WaterLevels(std::list<float> heights) {
 		}
 		else
 		{
-			//if value of current right is bigger than max right, update value else substract max right with current right and add it to level.
+//if value of current right is bigger than max right, update value else substract max right with current right and add it to level.
 			if (hvector[r] > right)
 				right = hvector[r];
 			else
