@@ -18,7 +18,7 @@ oat containing the
 water levels. For an input of [7, 6, 4, 7, 6, 9, 3, 1, 5, 3], an output of 11 is
 expected.
 
-Test:
+**Test:**
 ```c
 	std::list<float> heights;
 	heights.push_back(7);
@@ -36,15 +36,15 @@ Test:
 
 	if (equalFloats(waterAnswer, 11.f))
 	{
-		std::cout << "Exercise 4: Correct" << std::endl;
+		std::cout << "Exercise: Correct" << std::endl;
 	}
 	else
 	{
-		std::cout << "Exercise 4: Incorrect" << std::endl;
+		std::cout << "Exercise: Incorrect" << std::endl;
 	}
 ```
 
-Solution:
+**Solution:**
 ```c
 float WaterLevels(std::list<float> heights) {
 	float level = 0.f;
