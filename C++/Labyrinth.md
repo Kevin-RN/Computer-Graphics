@@ -8,7 +8,7 @@ typedef std::pair<int, int> location;
 int Labyrinth(std::set<std::pair<location, location> > labyrinth, int size);
 ```
 
-The edges of the labyrinth have been blocked o (meaning you cannot pass
+The edges of the labyrinth have been blocked of (meaning you cannot pass
 through them). You are also given a set of walls that indicate adjacent pairs
 in the labyrinth you cannot move between. For example, if you are given the
 input set shown below:
