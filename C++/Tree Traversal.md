@@ -73,11 +73,11 @@ Tree root;
 
 	if (equalFloats(visitAnswer1, 1132.f) && equalFloats(visitAnswer2, 984.f))
 	{
-		std::cout << "Exercise 2: Correct" << std::endl;
+		std::cout << "Exercise: Correct" << std::endl;
 	}
 	else
 	{
-		std::cout << "Exercise 2: Incorrect" << std::endl;
+		std::cout << "Exercise: Incorrect" << std::endl;
 	}
 }
   ```
