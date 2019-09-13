@@ -27,11 +27,11 @@ std::list<float> stats;
 
 	if (equalFloats(statsAnswer.first, 0.f) && equalFloats(statsAnswer.second, 2.0))
 	{
-		std::cout << "Exercise Statistics: Correct" << std::endl;
+		std::cout << "Exercise: Correct" << std::endl;
 	}
 	else
 	{
-		std::cout << "Exercise Statistics: Incorrect" << std::endl;
+		std::cout << "Exercise: Incorrect" << std::endl;
  }
  ```
  
