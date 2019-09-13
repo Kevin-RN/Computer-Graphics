@@ -49,11 +49,11 @@ grading of your code.
 
       if (equalFloats(complexAnswer.real, -19.f) && equalFloats(complexAnswer.im, 34.f))
       {
-        std::cout << "Exercise 3: Correct" << std::endl;
+        std::cout << "Exercise: Correct" << std::endl;
       }
       else
       {
-        std::cout << "Exercise 3: Incorrect" << std::endl;
+        std::cout << "Exercise: Incorrect" << std::endl;
       }
    }
   ```
