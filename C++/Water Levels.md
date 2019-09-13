@@ -18,7 +18,66 @@ oat containing the
 water levels. For an input of [7, 6, 4, 7, 6, 9, 3, 1, 5, 3], an output of 11 is
 expected.
 
-Solution:
-
-
 Test:
+```c
+	std::list<float> heights;
+	heights.push_back(7);
+	heights.push_back(6);
+	heights.push_back(4);
+	heights.push_back(7);
+	heights.push_back(6);
+	heights.push_back(9);
+	heights.push_back(3);
+	heights.push_back(1);
+	heights.push_back(5);
+	heights.push_back(3);
+
+	float waterAnswer = WaterLevels(heights);
+
+	if (equalFloats(waterAnswer, 11.f))
+	{
+		std::cout << "Exercise 4: Correct" << std::endl;
+	}
+	else
+	{
+		std::cout << "Exercise 4: Incorrect" << std::endl;
+	}
+```
+
+Solution:
+```c
+float WaterLevels(std::list<float> heights) {
+	float level = 0.f;
+	float left = 0, right = 0;
+
+	//turn list into a vector for easier access
+	std::vector<float> hvector(heights.size());
+	std::copy(heights.begin(), heights.end(), hvector.begin());
+
+	float l = 0, r = heights.size() - 1;
+
+
+	while (l <= r) {
+		if (hvector[l] < hvector[r])
+		{
+			//if value of current left is bigger than max left, update value else substract max left with current left and add it to total level.
+			if (hvector[l] > left)
+				left = hvector[l];
+			else
+				level += left - hvector[l];
+			l++;
+		}
+		else
+		{
+			//if value of current right is bigger than max right, update value else substract max right with current right and add it to level.
+			if (hvector[r] > right)
+				right = hvector[r];
+			else
+				level += right - hvector[r];
+			r--;
+		}
+	}
+
+	return level;
+}
+```
