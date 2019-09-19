@@ -54,61 +54,104 @@ std::set<std::pair<location, location> > labyrinth;
 		std::cout << "Exercise: Incorrect" << std::endl;
 	}
   ```
+  **Extra Test**
+  ```c
+std::set<std::pair<location, location> > labyrinth2;
+labyrinth2.insert(std::pair<location, location>(location(0, 0), location(1, 0)));
+labyrinth2.insert(std::pair<location, location>(location(0, 1), location(1, 1)));
+labyrinth2.insert(std::pair<location, location>(location(0, 2), location(0, 3)));
+labyrinth2.insert(std::pair<location, location>(location(1, 1), location(2, 1)));
+labyrinth2.insert(std::pair<location, location>(location(1, 2), location(2, 2)));
+labyrinth2.insert(std::pair<location, location>(location(2, 0), location(3, 0)));
+labyrinth2.insert(std::pair<location, location>(location(2, 1), location(3, 1)));
+labyrinth2.insert(std::pair<location, location>(location(2, 2), location(3, 2)));
+labyrinth2.insert(std::pair<location, location>(location(2, 3), location(3, 3)));
+labyrinth2.insert(std::pair<location, location>(location(3, 1), location(4, 1)));
+labyrinth2.insert(std::pair<location, location>(location(3, 2), location(4, 2)));
+labyrinth2.insert(std::pair<location, location>(location(3, 3), location(4, 3)));
+labyrinth2.insert(std::pair<location, location>(location(3, 4), location(4, 4)));
+
+int labAnswer2 = Labyrinth(labyrinth2, 5);
+
+if (labAnswer2 == 17)
+{
+	std::cout << "Exercise: Correct " <<  std::endl;
+}
+else
+{
+	std::cout << "Exercise: Incorrect " << std::endl;
+}
+
+  ```
   
   
   **Solution:**
-  ```c
+```c
   typedef std::pair<int, int> location;
 
+//Create helper class to store total distance
+class locationD {
+public:
+	location loc;
+	int distance;
+
+	locationD(location loca, int dist) {
+		this->loc = loca;
+		this->distance = dist;
+	}
+};
+
 //create neighbour locations for the current location (up, down, left, right)
-location getNeighbour(location current, int direction) {
+locationD getNeighbour(locationD current, int direction) {
 	switch (direction) {
-		case 1:
-			return location(current.first - 1, current.second);
-		case 2:
-			return location(current.first, current.second - 1);
-		case 3:
-			return location(current.first + 1, current.second);
-		default:
-			return location(current.first, current.second + 1);
+	case 0:
+		return locationD(location(current.loc.first - 1, current.loc.second), current.distance+1);
+	case 1:
+		return locationD(location(current.loc.first, current.loc.second - 1), current.distance+1);
+	case 2:
+		return locationD(location(current.loc.first + 1, current.loc.second), current.distance+1);
+	default:
+		return locationD(location(current.loc.first, current.loc.second + 1), current.distance+1);
 	}
 }
 
 int Labyrinth(std::set<std::pair<location, location> > labyrinth, int size)
 {
-	std::queue<location> search;
-	std::set<location> path;
+	std::queue<locationD> search;
+	std::set<location> known;
 
-	location start = location(0, 0);
-	location dest = location(size - 1, size - 1);
+	locationD start(location(0, 0), 1);
+	location destination(size - 1, size - 1);
 	search.push(start);
 
+
 	while (!search.empty()) {
-		location current = search.front();
-
-//if the current node is the destination
-		if (current.first == dest.first && current.second == dest.second) return path.size();
-
-//remove the current position from the queue to avoid infinite loop
+		locationD current = search.front();
+		//if the current node is the destination
+		if (current.loc == destination) {
+			return current.distance;
+		}
+		//remove the current position from the queue to avoid infinite loop
 		search.pop();
 
-		for(int i = 0; i < 4; i++)
-		{
-			location neighbour = getNeighbour(current, i);
+		for (int i = 0; i < 4; i++) {
+			locationD neighbour = getNeighbour(current, i);
 
-			std::pair<location, location> way = std::pair<location, location>(current, neighbour);
-//check if inside maze
-			if (neighbour.first > -1 && neighbour.first < size && neighbour.second > -1 && neighbour.second < size) {
-//check if it isn't already discovered and also if there isn't a wall
-				if ((path.find(neighbour) == path.end()) && (labyrinth.find(way) == labyrinth.end())) {
-					path.insert(current);
+			//check if inside maze
+			if ((neighbour.loc.first > -1) && (neighbour.loc.first < size) && (neighbour.loc.second > -1) && (neighbour.loc.second < size)) {
+				//check if it isn't already discovered and also if there isn't a wall
+				if ((known.find(neighbour.loc) == end(known)) && 
+					(labyrinth.find(std::pair<location, location>(current.loc, neighbour.loc)) == end(labyrinth)) &&
+					(labyrinth.find(std::pair<location, location>(neighbour.loc, current.loc)) == end(labyrinth))) {
+
 					search.push(neighbour);
+					known.insert(current.loc);
 				}
+				
 			}
 		}
 	}
 	return 0;
 }
-
 ```
  
