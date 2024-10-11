@@ -1,6 +1,6 @@
 # Raytracer
 
-Supposed to be a four week project done in two weeks time for the course Computer Graphics
+Two weeks project for the course Computer Graphics
 Project is done in groups of six people, for further information read the pdf file
 
 Project done by: 
